@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-frontend
+  labels:
+    app: hello-frontend
+    version: v1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-frontend
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: hello-frontend
+        version: v1
+    spec:
+      containers:
+      - name: hello-frontend
+        image: gcr.io/google-samples/hello-app:1.0
+        ports:
+        - containerPort: 8080
+        env:
+        - name: PORT
+          value: "8080"
+        - name: MESSAGE
+          value: "Hello from Frontend Service!"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-frontend
+  labels:
+    app: hello-frontend
+spec:
+  ports:
+  - port: 8080
+    name: http
+  selector:
+    app: hello-frontend
