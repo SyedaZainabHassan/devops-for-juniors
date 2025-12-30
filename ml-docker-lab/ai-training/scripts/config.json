@@ -1,0 +1,10 @@
+{
+    "model_name": "docker_ai_classifier",
+    "epochs": 30,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "validation_split": 0.2,
+    "random_state": 42,
+    "save_model": true,
+    "save_plots": true
+}
